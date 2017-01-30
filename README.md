@@ -10,6 +10,7 @@ Features:
 
 Installation:
 
+  * Install PostgreSQL. Make sure that username/password match the ones in dev.exs (postgres/postgres)
   * Install dependencies with `mix deps.get`
   * Create and migrate your database with `mix ecto.create && mix ecto.migrate`
   * Install Node.js dependencies with `npm install`
