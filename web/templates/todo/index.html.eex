@@ -1,0 +1,28 @@
+<h2>Listing todos</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for todo <- @todos do %>
+    <tr>
+      <td><%= todo.title %></td>
+      <td><%= todo.description %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: todo_path(@conn, :show, todo), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: todo_path(@conn, :edit, todo), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: todo_path(@conn, :delete, todo), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New todo", to: todo_path(@conn, :new) %>

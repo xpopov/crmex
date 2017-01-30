@@ -1,0 +1,6 @@
+<h2>Edit todo</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: todo_path(@conn, :update, @todo) %>
+
+<%= link "Back", to: todo_path(@conn, :index) %>
