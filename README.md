@@ -1,6 +1,8 @@
 # CRM using Phoenix/Elixir and React
 
-This is very basic CRM built on Phoenix framework (backend) and React (front-end)
+This is very basic CRM built on Phoenix framework (backend) and React (front-end).
+It's WIP.
+
 
 Features:
 - Authentication via channels
