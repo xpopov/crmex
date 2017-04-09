@@ -26,7 +26,7 @@ module.exports = {
     "react-hot-loader/patch",
     "webpack-hot-middleware/client?path=http://localhost:8080/__webpack_hmr",
     "./web/static/js/index.js",
-    "./web/static/styles/app.less"
+    "./web/static/styles/app.scss"
   ],
   output: {
     path: path.resolve("./priv/static"),
@@ -47,50 +47,57 @@ module.exports = {
           //   plugins: ["react-hot-loader/babel", "transform-decorators-legacy"],
           //   presets: ["react", ["es2015", { "modules": false }], "stage-2"],
           // }
+        },
+        {
+          loader: "haml-jsx-loader"
         }
       ]
     }, {
       test: /\.less$/,
       // loader: ExtractTextPlugin.extract({ fallbackLoader: "style-loader", loader: "css?localIdentName=[hash:base64]!postcss!less" })
-      use: ['style-loader', 'css-loader']
+      use: ['isomorphic-style-loader', 'style-loader', 'css-loader']
+    }, {
+      test: /\.scss|\.sass$/,
+      // loader: ExtractTextPlugin.extract({ fallbackLoader: "style-loader", loader: "css?localIdentName=[hash:base64]!postcss!less" })
+      use: ['isomorphic-style-loader', 'style-loader', 'css-loader', 'sass-loader']
     }, {
       test: /\.png$/,
-      loader: "url?" + [
+      loader: "url-loader?" + [
         "limit=100000",
         "mimetype=image/png"
       ].join("&"),
     }, {
       test: /\.gif$/,
-      loader: "url?" + [
+      loader: "url-loader?" + [
         "limit=100000",
         "mimetype=image/gif"
       ].join("&"),
     }, {
       test: /\.jpg$/,
-      loader: "file?name=images/[name].[ext]",
+      loader: "file-loader?name=images/[name].[ext]",
     }, {
       test: /\.(woff|woff2)$/,
-      loader: "url?" + [
+      loader: "url-loader?" + [
         "limit=10000",
         "mimetype=application/font-woff",
         "name=fonts/[name].[ext]"
       ].join("&"),
     }, {
       test: /\.ttf$/,
-      loader: "url?" + [
+      loader: "url-loader?" + [
         "limit=10000",
         "mimetype=application/octet-stream",
         "name=fonts/[name].[ext]"
       ].join("&"),
     }, {
       test: /\.eot$/,
-      loader: "url?" + [
+      loader: "url-loader?" + [
         "limit=10000",
         "name=fonts/[name].[ext]"
       ].join("&"),
     }, {
       test: /\.svg$/,
-      loader: "url?" + [
+      loader: "url-loader?" + [
         "limit=10000",
         "mimetype=image/svg+xml",
         "name=images/[name].[ext]"
@@ -103,7 +110,7 @@ module.exports = {
   //   })
   // ],
   resolve: {
-    extensions: [".js", ".less", ".css"],
+    extensions: [".js", ".less", ".css", ".scss", ".sass"],
     modules: ["node_modules", __dirname + "/web/static/js"],
     alias: {
       styles: __dirname + "/web/static/styles"
@@ -114,6 +121,7 @@ module.exports = {
     new Webpack.DefinePlugin({
       "process.env": {
         "NODE_ENV": JSON.stringify(env),
+        BROWSER: JSON.stringify(true)
       },
     }),
     // new Webpack.optimize.DedupePlugin(), //deprecated

@@ -51,6 +51,7 @@ config :crmex, CrmEx.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
   password: "postgres",
+  # password: "password4postgres",
   database: "crmex_dev",
   hostname: "localhost",
   pool_size: 10

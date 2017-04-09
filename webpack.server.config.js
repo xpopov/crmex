@@ -4,8 +4,8 @@ module.exports = {
   },
   output: {
     path: "./priv/static/server/js",
-    filename: "reph.js",
-    library: "reph",
+    filename: "crmex.js",
+    library: "crmex",
     libraryTarget: "commonjs2"
   },
   module: {

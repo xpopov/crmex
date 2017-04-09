@@ -67,7 +67,7 @@ defmodule CrmEx.Web do
 
       alias CrmEx.Repo
       import Ecto
-      import Ecto.Query
+      import Ecto.Query, only: [from: 1, from: 2]
       import CrmEx.Gettext
     end
   end

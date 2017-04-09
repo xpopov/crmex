@@ -17,7 +17,7 @@ Installation:
 
 Running
 
-  * Start Phoenix endpoint with `mix phoenix.server`
+  * Start Phoenix endpoint with `mix phoenix.server` (this will start also React HMR at 8080 port in development env)
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
