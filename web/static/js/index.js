@@ -1,17 +1,24 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
+import { Rerender, Render, ConnectStore } from 'jumpsuit';
+import { reducer as formReducer } from 'redux-form';
 
 import App from './app';
+import SocketActions from 'socket/socket_actions';
+import auth from 'auth/auth_state';
 
-const rootEl = document.getElementById('app_root');
-const renderApp = (Component = App) => {
-  ReactDOM.render(
+// const rootEl = document.getElementById('app');
+const renderApp = (Inner = App) => {
+  const globalState = { socket: SocketActions, auth: auth, form: formReducer };
+  Render(globalState, <Inner/>, 'app');
+
+  // const connectedApp = ConnectStore(globalState, <Inner />);
+  /*render(
     <AppContainer>
-      <Component />
-    </AppContainer>,
-    rootEl
-  );
+      <connectedApp />
+    </AppContainer>    
+  , rootEl);*/
 };
 
 if (module.hot) {
@@ -20,7 +27,10 @@ if (module.hot) {
   //   store.replaceReducer(appReducer);
   // });
 
-  module.hot.accept('./app', () => renderApp());
+  module.hot.accept('./app', () => 
+    // Rerender()
+    renderApp()
+  );
 }
 
 renderApp(); 

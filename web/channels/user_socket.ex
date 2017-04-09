@@ -2,7 +2,7 @@ defmodule CrmEx.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", CrmEx.RoomChannel
+  channel "auth", CrmEx.AuthChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
